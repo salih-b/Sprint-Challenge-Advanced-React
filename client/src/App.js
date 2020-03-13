@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import GetPlayers from './components/GetPlayers';
+import {useInput} from './hooks/useInput';
 import './App.css';
 
 function App() {
+  // const [playerText, setPlayerText] = useState('');
+  // const [players, setPlayers] = useState([]);
+  const [playerText, setPlayerText, handleChangePlayerText] = useInput("");
+  const [players, setPlayers, handlePlayers] = useInput([]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GetPlayers 
+      playerText={playerText} 
+      setPlayerText={setPlayerText} 
+      players={players}
+       setPlayers={setPlayers}
+       handleChangePlayerText={handleChangePlayerText}
+       handlePlayers={handlePlayers} />
     </div>
   );
 }
