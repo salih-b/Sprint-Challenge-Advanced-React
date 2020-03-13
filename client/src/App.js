@@ -4,8 +4,7 @@ import {useInput} from './hooks/useInput';
 import './App.css';
 
 function App() {
-  // const [playerText, setPlayerText] = useState('');
-  // const [players, setPlayers] = useState([]);
+
   const [playerText, setPlayerText, handleChangePlayerText] = useInput("");
   const [players, setPlayers, handlePlayers] = useInput([]);
   return (
