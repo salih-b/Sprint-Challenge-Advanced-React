@@ -35,9 +35,18 @@ class getPlayers extends React.Component {
   //   }
   // }
 
-  // handleChanges = e => {
-  //   this.props.setPlayerText(e.target.value);
-  // };
+  handleButton = e => {
+    axios
+      .get(`http://localhost:5000/api/players`)
+      .then(response => {
+        const playerName = response.data.filter(player =>
+            player.name.toLowerCase().includes(this.props.playerText.toLowerCase())
+        );
+     console.log("this is playerName on click", playerName);
+        this.props.setPlayers(playerName);
+      });
+  // }, [this.props.playerText]);
+  };
 
 
 /*onClick={this.fetchPlayers}*/
@@ -45,9 +54,11 @@ class getPlayers extends React.Component {
     return (
       <div className="App">
           {console.log('this is props being passed', this.props)}
+          {console.log('this is value', this.props.playerText)}
+          {console.log('this is handle on change', this.props.handleChangePlayerText)}
         <h1>Hello Players</h1>
         <input value={this.props.playerText} onChange={this.props.handleChangePlayerText} />
-    <button>Fetch Players</button>
+    <button onClick={this.handleButton}>Fetch Players</button>
         <div className="players">
           {console.log('mapping over this -->',this.props.players)}
           {this.props.players.map(player => (
